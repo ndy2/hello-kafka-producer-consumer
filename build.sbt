@@ -8,7 +8,7 @@ lazy val root = (project in file("."))
   )
 libraryDependencies ++= Seq(
   "org.apache.kafka" % "kafka-clients" % "3.6.1",
-  "io.github.embeddedkafka" %% "embedded-kafka" % "3.4.0"
+  "io.github.embeddedkafka" %% "embedded-kafka" % "3.4.0",
+  "org.scalatest" %% "scalatest" % "3.2.15" % Test,
+  "org.assertj" % "assertj-core" % "3.24.2" % Test
 )
-
-
