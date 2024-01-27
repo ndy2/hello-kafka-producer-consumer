@@ -1,12 +1,13 @@
-package kafka
+package kafka.pure
 
 import org.apache.kafka.clients.consumer.ConsumerConfig
 
 import java.util.Properties
 
-package object pure {
+package object ping {
 
-  val TOPIC = "pure"
+  val TOPIC = "pure-ping"
+  val PING = "ping"
 
   val PRODUCER_CONFIG: Properties = {
     val props = new Properties()

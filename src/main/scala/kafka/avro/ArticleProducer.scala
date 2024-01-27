@@ -1,15 +1,10 @@
 package kafka.avro
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.json.JsonMapper
-import com.fasterxml.jackson.module.scala.{DefaultScalaModule, ScalaObjectMapper}
-import org.apache.kafka.clients.producer.{Callback, KafkaProducer, ProducerRecord}
+import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 import org.apache.kafka.common.serialization.StringSerializer
 
-
-object ArticleProducer extends App
-with ProducerUtils[Article]
-with JsonStringSerializer[Article] {
+object ArticleProducer extends App with ProducerUtils[Article] with JsonStringSerializer[Article] {
 
   private val producer = new KafkaProducer[String, String](PRODUCER_CONFIG)
   try {
@@ -35,14 +30,14 @@ trait JsonStringSerializer[T] {
   }
 }
 
-trait ProducerUtils[T]  {
+trait ProducerUtils[T] {
   def produce[K, V](
-                     producer: KafkaProducer[K, V],
-                     topic: String,
-                     key: K,
-                     value: V
-                   ): Unit = {
+      producer: KafkaProducer[K, V],
+      topic: String,
+      key: K,
+      value: V
+  ): Unit = {
     val record = new ProducerRecord(topic, key, value)
-    producer.send(record, implicitly[Callback])
+    producer.send(record)
   }
 }

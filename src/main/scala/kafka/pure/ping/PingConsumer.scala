@@ -1,4 +1,4 @@
-package kafka.pure
+package kafka.pure.ping
 
 import org.apache.kafka.clients.consumer.KafkaConsumer
 
@@ -15,6 +15,8 @@ object PingConsumer extends App {
         println(s"Received message: record=$record")
       }
     }
+  } catch {
+    case e: Exception => println("Exception occurred in PingConsumer: " + e)
   } finally {
     println("consumer.close()")
     consumer.close()
