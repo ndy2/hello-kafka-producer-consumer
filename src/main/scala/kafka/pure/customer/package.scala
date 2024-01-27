@@ -1,6 +1,5 @@
 package kafka.pure
 
-import com.github.javafaker.Faker
 import org.apache.kafka.clients.consumer.ConsumerConfig
 
 import java.util.Properties
@@ -21,7 +20,7 @@ package object customer {
     val props = new Properties()
     props.put("bootstrap.servers", "localhost:9092")
     props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
-    props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
+    props.put("value.deserializer", "kafka.pure.customer.CustomerDeserializer")
     props.put("group.id", "something")
     props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest")
     props

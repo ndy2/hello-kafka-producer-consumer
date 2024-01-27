@@ -5,7 +5,7 @@ import org.apache.kafka.clients.consumer.KafkaConsumer
 import scala.collection.JavaConverters._
 
 object CustomerConsumer extends App {
-  private val consumer = new KafkaConsumer[String, String](CONSUMER_CONFIG)
+  private val consumer = new KafkaConsumer[String, Customer](CONSUMER_CONFIG)
   try {
     consumer.subscribe(Seq(TOPIC).asJava)
     while (true) {
